@@ -1,7 +1,4 @@
-Problem: 
-		We can’t find the latest designs in dresses, shoes, jeweleries etc. quickly because there are many Sites and we must search manually for that. 
-		Since it is time consuming many face a problem finding time.
-Solution:
-		I want to build an android application that connects with the RestApis such as Amazon, eBay and find the details of latest arrivals from each category.
-		This will reduce time because it is available on your mobile device from a touch of a button. 
-		I hope add the function of viewing the reviews on an item so the user can easily decide according to the past experience of buyers.
+Problem - in day to day life we eat almost same things. But whenever we want to prepare something special, for an occasion of when we are alone, we want to make the best out of the ingredients we have. Although we can find various recipes from books, they often require another visit to the market. The problem is that there is no convenient application that can find recipes according to the ingredients we have.
+
+
+ Solution – so I came up with an idea to create an android mobile application which gives suggestions for recipes according to the ingredients we have. After we enter the ingredients we have, app will suggest suitable recipes. I hope to use food2fork API. I Hope to add the feature to save recipes for future reference. 
