@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Cook</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_color">Color</string>
+    <string name="title_activity_color_code">ColorCode</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_search_list_item">SearchListItem</string>
+    <string name="title_activity_recipes_list">RecipesList</string>
+    <string name="title_activity_recipy_list_item">RecipyListItem</string>
+    <string name="title_activity_recipy_description">RecipyDescription</string>
+    <string name="txtCredits">www.google.com</string>
+    <string name="title_activity_web_view">WebView</string>
+    <string name="title_activity_web_site">WebSite</string>
+</resources>
