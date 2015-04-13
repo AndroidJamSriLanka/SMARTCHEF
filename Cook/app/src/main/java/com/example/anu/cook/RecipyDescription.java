@@ -18,7 +18,6 @@ public class RecipyDescription extends ActionBarActivity {
 
     String recipe_id;
     String webAddress;
-    String directionWebAddress;
     String response;
     String directionResponce;
     JSONObject joIngre;
@@ -26,6 +25,7 @@ public class RecipyDescription extends ActionBarActivity {
     String getMeth;
     String url;
     String dir="";
+    Boolean isRandomRecipy;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +35,10 @@ public class RecipyDescription extends ActionBarActivity {
         Bundle my_bundle_received=receive_i.getExtras();
         recipe_id=my_bundle_received.get("item1").toString();
         getMeth=my_bundle_received.get("item2").toString();
+        isRandomRecipy= (Boolean) my_bundle_received.get("item3");
         Log.d("Value", "--" + my_bundle_received.get("item1").toString());
+
+
 
         TextView titleTextView= (TextView) findViewById(R.id.title);
         TextView ingredianceTextView= (TextView) findViewById(R.id.ingrediance);
@@ -43,37 +46,26 @@ public class RecipyDescription extends ActionBarActivity {
         TextView urlForWeb= (TextView) findViewById(R.id.link);
 
 
-        webAddress="http://api.pearson.com/kitchen-manager/v1/recipes?ingredients-any=";
+        if(isRandomRecipy==true){
+            webAddress="http://api.pearson.com/kitchen-manager/v1/recipes?&limit=500";
+        }
+
+        else{
+            webAddress="http://api.pearson.com/kitchen-manager/v1/recipes?ingredients-any="+ getMeth+"&limit=150";
+        }
+
+
 
         WebService webService = new WebService();
         WebService directionWeb=new WebService();
         try {
 
-            response= webService.execute(webAddress+getMeth).get();
-            Log.d("search",webAddress+getMeth);
-        /*        JSONObject jo = new JSONObject(response);
-            JSONObject jingre = jo.getJSONObject("results");
-            // txView.setText(jo.getString("recipes"));
-            String ingre = jingre.getString("ingredients");
-            JSONArray ja = new JSONArray(ingre);
-            //txView.setText(ja.length()+"");
-
-
-            titleTextView.setText(jingre.getString("name"));
-
-            for (int i = 0; i < ja.length() ; i++) {
-                ingrediance= (String) ja.get(i)+"\n"+ingrediance;
-
-            }*/
-
+            response= webService.execute(webAddress).get();
 
             JSONObject jo = new JSONObject(response);
             // txView.setText(jo.getString("recipes"));
             String recipy = jo.getString("results");
             JSONArray ja = new JSONArray(recipy);
-
-
-
 
                 joIngre = (JSONObject) ja.get(Integer.parseInt(recipe_id));
 
@@ -81,6 +73,7 @@ public class RecipyDescription extends ActionBarActivity {
                 JSONArray ingryArray = new JSONArray(ingre);
                 for (int j = 0; j < ingryArray.length(); j++) {
                     ingrediance = (String) ingryArray.get(j)+"\n"+ingrediance;
+
                 }
 
 
@@ -108,7 +101,7 @@ public class RecipyDescription extends ActionBarActivity {
             e.printStackTrace();
         }
 
-        Log.d("url in description",url);
+
         try{
 
 

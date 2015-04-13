@@ -26,6 +26,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
@@ -37,6 +40,7 @@ public class SearchActivity extends ActionBarActivity {
     Button addButton;
     String seachBar;
     String s="";
+    Boolean israndomResipy=false;
     ArrayList<String> listItems=new ArrayList<String>();
 
     //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
@@ -120,6 +124,7 @@ public class SearchActivity extends ActionBarActivity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
 
+                        israndomResipy=true;
                         clickSearchButtonCorrectly();
                     }
                 });
@@ -150,7 +155,7 @@ public class SearchActivity extends ActionBarActivity {
        t.start();
        Bundle simple_bundle = new Bundle();
        simple_bundle.putString("item1", getS());
-
+        simple_bundle.putBoolean("item2",israndomResipy);
 
        Intent intent = new Intent(SearchActivity.this, RecipesList.class);
        intent.putExtras(simple_bundle);

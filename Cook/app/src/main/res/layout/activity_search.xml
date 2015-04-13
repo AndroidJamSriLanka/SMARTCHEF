@@ -14,7 +14,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Add ingredience you have"
+        android:hint="Add ingredients you have"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -54,7 +54,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Search for recipy"
+        android:text="Search for recipe"
         android:id="@+id/searchButton"
         android:background="#B40314"
         android:layout_alignBottom="@+id/listView"

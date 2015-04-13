@@ -32,6 +32,8 @@ public class RecipesList extends ActionBarActivity {
     String getMethod;
     String response;
     TextView txtView;
+    TextView countTxt;
+    Boolean isRandomRecipy;
 
 
     ArrayList<String> recipylistItems=new ArrayList<String>();
@@ -47,26 +49,36 @@ public class RecipesList extends ActionBarActivity {
 
         listView= (ListView) findViewById(R.id.listViewRecipes);
         txtView= (TextView) findViewById(R.id.textView5);
+        countTxt= (TextView) findViewById(R.id.textView6);
 
         recipyadapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,recipylistItems);
         listView.setAdapter(recipyadapter);
         Intent receive_i=getIntent();
         Bundle my_bundle_received=receive_i.getExtras();
         getMethod=my_bundle_received.get("item1").toString();
+        isRandomRecipy= (Boolean) my_bundle_received.get("item2");
         Log.d("Value","--"+my_bundle_received.get("item1").toString());
 
+        if(isRandomRecipy==true){
+               webAddress="http://api.pearson.com/kitchen-manager/v1/recipes?&limit=500";
+        }
 
-        webAddress="http://api.pearson.com/kitchen-manager/v1/recipes?ingredients-any=";
+        else{
+            webAddress="http://api.pearson.com/kitchen-manager/v1/recipes?ingredients-any="+ getMethod+"&limit=150";
+        }
+
 
            WebService webService = new WebService();
                 try {
 
-                    response = webService.execute(webAddress + getMethod).get();
-                    //  txView.setText(response);
-                    Log.d("search", webAddress + getMethod);
+                    response = webService.execute(webAddress ).get();
+
                     JSONObject jo = new JSONObject(response);
                     // txView.setText(jo.getString("recipes"));
                     String recipy = jo.getString("results");
+
+                    String count=jo.getString("total");
+                    countTxt.setText(count+" ");
                     JSONArray ja = new JSONArray(recipy);
                     //txView.setText(ja.length()+"");
 
@@ -74,14 +86,7 @@ public class RecipesList extends ActionBarActivity {
                     for (int i = 0; i < ja.length(); i++) {
                         joRecipy = (JSONObject) ja.get(i);
                         title = joRecipy.getString("name");
-                        // recipe_id=joRecipy.getString("ingredients");
-                        // recipe_idListItem.add(recipe_id);
-
-                        //  Log.d("Array Items",recipe_id+"");
-
                         recipylistItems.add(title);
-
-
                         recipyadapter.notifyDataSetChanged();
                     }
 
@@ -117,12 +122,15 @@ public class RecipesList extends ActionBarActivity {
                 Bundle simple_bundle=new Bundle();
                 simple_bundle.putString("item1", String.valueOf(position));
                 simple_bundle.putString("item2",getMethod);
+                simple_bundle.putBoolean("item3",isRandomRecipy);
                 Intent intent=new Intent(RecipesList.this,RecipyDescription.class);
                 intent.putExtras(simple_bundle);
                 startActivity(intent);
 
             }
         });
+
+
 
     }
 }
