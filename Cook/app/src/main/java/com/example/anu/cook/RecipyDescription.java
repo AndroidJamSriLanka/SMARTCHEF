@@ -1,16 +1,23 @@
 package com.example.anu.cook;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 
@@ -26,6 +33,7 @@ public class RecipyDescription extends ActionBarActivity {
     String url;
     String dir="";
     Boolean isRandomRecipy;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +54,7 @@ public class RecipyDescription extends ActionBarActivity {
         TextView urlForWeb= (TextView) findViewById(R.id.link);
 
 
+
         if(isRandomRecipy==true){
             webAddress="http://api.pearson.com/kitchen-manager/v1/recipes?&limit=500";
         }
@@ -63,7 +72,6 @@ public class RecipyDescription extends ActionBarActivity {
             response= webService.execute(webAddress).get();
 
             JSONObject jo = new JSONObject(response);
-            // txView.setText(jo.getString("recipes"));
             String recipy = jo.getString("results");
             JSONArray ja = new JSONArray(recipy);
 
@@ -79,6 +87,8 @@ public class RecipyDescription extends ActionBarActivity {
 
 
             titleTextView.setText(joIngre.getString("name"));
+            new DownloadImageTask((ImageView) findViewById(R.id.imageButton))
+                    .execute(joIngre.getString("image"));
             Log.d("ingredients in array",ingrediance);
 
             ingredianceTextView.setText(ingrediance);
@@ -134,6 +144,12 @@ public class RecipyDescription extends ActionBarActivity {
     }
 
 
+
+
+
+
+
+
     public void  onUrlClick(View view){
 
         Log.d("url clicked","url clicked");
@@ -145,5 +161,7 @@ public class RecipyDescription extends ActionBarActivity {
         intent.putExtras(simple_bundle);
         startActivity(intent);
     }
+
+
 
 }
