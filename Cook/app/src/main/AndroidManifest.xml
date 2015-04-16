@@ -44,10 +44,34 @@
             android:name=".RecipyDescription"
             android:label="@string/title_activity_recipy_description" >
         </activity>
-
         <activity
             android:name=".WebSite"
             android:label="@string/title_activity_web_site" >
+        </activity>
+        <activity
+            android:name=".SecondPage"
+            android:label="@string/title_activity_second_page" >
+            <intent-filter>
+                <action android:name="com.example.anu.SECONDPAGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CoursesSearchActivity"
+            android:label="@string/title_activity_courses_search" >
+        </activity>
+        <activity
+            android:name=".CourseSearchItem"
+            android:label="@string/title_activity_course_search_item" >
+        </activity>
+        <activity
+            android:name=".CourseSpecificRecipes"
+            android:label="@string/title_activity_course_specific_recipes" >
+        </activity>
+        <activity
+            android:name=".CourseRecipeDirections"
+            android:label="@string/title_activity_course_recipe_directions" >
         </activity>
     </application>
 

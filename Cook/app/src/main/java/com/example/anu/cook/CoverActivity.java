@@ -32,7 +32,7 @@ public class CoverActivity extends ActionBarActivity {
 
                     sleep(2500);
 
-                    Intent i = new Intent("com.example.anu.SEARCH");
+                    Intent i = new Intent("com.example.anu.SECONDPAGE");
 
                     startActivity(i);
 
