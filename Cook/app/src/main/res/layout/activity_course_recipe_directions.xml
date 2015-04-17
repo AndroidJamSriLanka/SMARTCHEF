@@ -109,7 +109,6 @@
             android:layout_alignParentEnd="true"
             android:layout_above="@+id/description"
             android:layout_toRightOf="@+id/ingrediance"
-
             />
 
 

@@ -73,6 +73,14 @@
             android:name=".CourseRecipeDirections"
             android:label="@string/title_activity_course_recipe_directions" >
         </activity>
+        <activity
+            android:name=".CuisinesSearchActivity"
+            android:label="@string/title_activity_cuisines_search" >
+        </activity>
+        <activity
+            android:name=".CuisinesSpecificRecipes"
+            android:label="@string/title_activity_cuisines_specific_recipes" >
+        </activity>
     </application>
 
 </manifest>

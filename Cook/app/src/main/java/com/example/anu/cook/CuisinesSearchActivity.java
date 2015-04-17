@@ -1,6 +1,5 @@
 package com.example.anu.cook;
 
-import android.accounts.AccountManager;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 
-public class CoursesSearchActivity extends ActionBarActivity {
+public class CuisinesSearchActivity extends ActionBarActivity {
 
     ListView listView;
     String webArddress;
@@ -41,13 +39,13 @@ public class CoursesSearchActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_courses_search);
-        listView = (ListView) findViewById(R.id.listView2);
+        setContentView(R.layout.activity_cuisines_search);
+
+        listView = (ListView) findViewById(R.id.listView4);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, coursesItem);
         listView.setAdapter(adapter);
 
-
-        webArddress = "http://api.pearson.com:80/kitchen-manager/v1/courses?limit=30";
+        webArddress="http://api.pearson.com:80/kitchen-manager/v1/cuisines?limit=40";
 
         WebService webService = new WebService();
         try {
@@ -87,28 +85,29 @@ public class CoursesSearchActivity extends ActionBarActivity {
 
 
 
-    listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                                        {
+                                            Intent i;
+                                            @Override
+                                            public void onItemClick (AdapterView < ? > arg0, View arg1,int position, long id){
+                                                // TODO Auto-generated method stub
 
-    {
-        Intent i;
-        @Override
-        public void onItemClick (AdapterView < ? > arg0, View arg1,int position, long id){
-        // TODO Auto-generated method stub
+                                                url1=urlList.get(position);
+                                                Bundle simple_bundle = new Bundle();
+                                                simple_bundle.putString("item1", String.valueOf(position));
+                                                simple_bundle.putString("item2",url1);
+                                                Intent intent = new Intent(CuisinesSearchActivity.this, CourseSpecificRecipes.class);
+                                                intent.putExtras(simple_bundle);
+                                                startActivity(intent);
 
-        url1=urlList.get(position);
-        Bundle simple_bundle = new Bundle();
-        simple_bundle.putString("item1", String.valueOf(position));
-        simple_bundle.putString("item2",url1);
-        Intent intent = new Intent(CoursesSearchActivity.this, CuisinesSpecificRecipes.class);
-        intent.putExtras(simple_bundle);
-        startActivity(intent);
+                                            }
+                                        }
 
-    }
-    }
+        );
 
-    );
+
 
 }
 
-}
 
+}

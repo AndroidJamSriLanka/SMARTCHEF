@@ -18,4 +18,6 @@
     <string name="title_activity_course_search_item">CourseSearchItem</string>
     <string name="title_activity_course_specific_recipes">CourseSpecificRecipes</string>
     <string name="title_activity_course_recipe_directions">CourseRecipeDirections</string>
+    <string name="title_activity_cuisines_search">CuisinesSearchActivity</string>
+    <string name="title_activity_cuisines_specific_recipes">CuisinesSpecificRecipes</string>
 </resources>

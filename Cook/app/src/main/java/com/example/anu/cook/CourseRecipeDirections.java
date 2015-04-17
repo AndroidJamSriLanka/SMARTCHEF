@@ -79,8 +79,8 @@ public class CourseRecipeDirections extends ActionBarActivity {
 
 
 
-         //   new DownloadImageTask((ImageView) findViewById(R.id.imageButton))
-         //           .execute(joIngre.getString("image"));
+            new DownloadImageTask((ImageView) findViewById(R.id.imageButton))
+                    .execute(jo.getString("image"));
             Log.d("ingredients in array",ingre);
 
             ingredianceTextView.setText(ingre);

@@ -110,15 +110,15 @@ public class SearchActivity extends ActionBarActivity {
 
     public void AlertBox(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Add Ingrediance, or go to random recipes");
-        alertDialogBuilder.setPositiveButton("Ok",
+        alertDialogBuilder.setMessage("Go to random recipes");
+        alertDialogBuilder.setPositiveButton("Cancel",
                 new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                     }
                 });
-        alertDialogBuilder.setNegativeButton("Go",
+        alertDialogBuilder.setNegativeButton("Ok",
                 new DialogInterface.OnClickListener() {
 
                     @Override

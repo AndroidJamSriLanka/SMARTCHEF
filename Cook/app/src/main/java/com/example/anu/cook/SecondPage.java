@@ -32,4 +32,9 @@ public class SecondPage extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void cuisinesClick(View view){
+        Intent intent=new Intent(SecondPage.this,CuisinesSearchActivity.class);
+        startActivity(intent);
+    }
+
 }
